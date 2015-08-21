@@ -15,7 +15,7 @@ let Exec command args =
 
 let RestorePackages solutionFile =
     Exec "nuget" ("restore " + solutionFile)
-    solutionFile |> RestoreComponents (fun defaults -> {defaults with ToolPath = "xfake/xamarin-component.exe" })
+    solutionFile |> RestoreComponents (fun defaults -> {defaults with ToolPath = (xfakeDir + "/xamarin-component.exe") })
 
 let RunNUnitTests dllPath xmlPath =
     Exec "/Library/Frameworks/Mono.framework/Versions/Current/lib/mono/4.5/nunit-console.exe" (dllPath + " -xml=" + xmlPath)
@@ -42,7 +42,7 @@ let SetAndroidVersion version buildNumber =
 
 let AutoincrementTouchBuildNumber () =
     let path = Path.Combine(".", projectNameIOS, "Info.plist")
-    Exec "build-touch-autoincrement.sh" path
+    Exec ("sh " + xfakeDir + "/build-touch-autoincrement.sh") path
 
     // TODO: read current build number from Info.plist
     CommitVersionChange path "** [iOS] Build number auto-incremented"

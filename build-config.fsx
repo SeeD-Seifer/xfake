@@ -13,14 +13,16 @@ let projectNameUITest = solutionName + ".UITest"
 
 let pathCoreDebug = projectNameCore + "/bin/Debug"
 let pathCoreTestDebug = projectNameCoreTest + "/bin/Debug"
-let pathIosDebug = projectNameIOS + "/bin/Debug"
 let pathDroidDebug = projectNameAndroid + "/bin/Debug"
+let pathDroidRelease = projectNameAndroid + "/bin/Release"
 
 let solutionFile = solutionName + ".sln";
+
+let xfakeDir = "xfake"
 
 let keystorePath = "path-to-keystore.keystore"
 let keystoreAlias = "keystore-alias"
 
 let hockeyAppOwnerId = ""
 
-let submodules = []
+let submodules = [] // Add submodule's solutions here to restore their NuGet packages

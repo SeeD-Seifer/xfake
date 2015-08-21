@@ -108,7 +108,7 @@ Target "android-package" (fun () ->
             ProjectPath = String.Format("{0}/{0}.csproj", projectNameAndroid)
             //ProjectPath = solutionFile
             Configuration = "Release"
-            OutputPath = projectNameAndroid + "/bin/Release"
+            OutputPath = pathDroidRelease
         })
     |> AndroidSignAndAlign (fun defaults ->
         {defaults with
@@ -124,10 +124,10 @@ Target "android-uitests" (fun () ->
         {defaults with
             ProjectPath = String.Format("{0}/{0}.csproj", projectNameAndroid)
             Configuration = "Release"
-            OutputPath = projectNameAndroid + "/bin/Release"
+            OutputPath = pathDroidRelease
         }) |> ignore
 
-    let appPath = Directory.EnumerateFiles(Path.Combine(projectNameAndroid, "bin", "Release"), "*.apk", SearchOption.AllDirectories).First()
+    let appPath = Directory.EnumerateFiles(pathDroidRelease, "*.apk", SearchOption.AllDirectories).First()
 
     RunUITests appPath
 )
@@ -137,10 +137,10 @@ Target "android-testcloud" (fun () ->
         {defaults with
             ProjectPath = String.Format("{0}/{0}.csproj", projectNameAndroid)
             Configuration = "Release"
-            OutputPath = projectNameAndroid + "/bin/Release"
+            OutputPath = pathDroidRelease
         }) |> ignore
 
-    let appPath = Directory.EnumerateFiles(Path.Combine(projectNameAndroid, "bin", "Release"), "*.apk", SearchOption.AllDirectories).First()
+    let appPath = Directory.EnumerateFiles(pathDroidRelease, "*.apk", SearchOption.AllDirectories).First()
 
     getBuildParam "devices" |> RunTestCloudTests appPath
 )
