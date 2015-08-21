@@ -20,3 +20,7 @@ sh ./xfake/build.sh ios-adhoc -ev HockeyAppApiToken <hockey-app-key>
 
 * Copy `android-sdk/builds-tools/version/zipalign` to `android-sdk/platform-tools`.
 * Ensure `android-sdk/platform-tools` folder added to PATH and command `zipalign` works from terminal. See  http://stackoverflow.com/a/7609388/4478393
+
+#### WARNING (restore): You don't appear to have credentials for components.xamarin.com saved in your cookie jar! ERROR (restore): No credentials and didn't want to run `xamarin-component login'. Cannot proceed.
+
+* Run `xamarin-components.exe` manually once: `mono ./xfake/xamarin-component.exe restore MyApp.sln`. And provide Xamarin login/password
