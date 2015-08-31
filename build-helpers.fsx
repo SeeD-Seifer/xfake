@@ -42,7 +42,7 @@ let SetAndroidVersion version buildNumber =
 
 let AutoincrementTouchBuildNumber () =
     let path = Path.Combine(".", projectNameIOS, "Info.plist")
-    Exec ("sh " + xfakeDir + "/build-touch-autoincrement.sh") path
+    Exec "sh" (xfakeDir + "/build-touch-autoincrement.sh " + path)
 
     // TODO: read current build number from Info.plist
     CommitVersionChange path "** [iOS] Build number auto-incremented"
