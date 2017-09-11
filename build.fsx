@@ -51,8 +51,10 @@ Target "ios-adhoc" (fun () ->
     iOSBuild (fun defaults ->
         {defaults with
             ProjectPath = solutionFile
-            Configuration = "Ad-Hoc|iPhone"
+            Configuration = "Ad-Hoc"
+            Platform = "iPhone"
             Target = "Build"
+            BuildIpa = true
         })
 
     let appPath = Directory.EnumerateFiles(Path.Combine(projectNameIOS, "bin", "iPhone", "Ad-Hoc"), "*.ipa").First()
@@ -63,8 +65,10 @@ Target "ios-appstore" (fun () ->
     iOSBuild (fun defaults ->
         {defaults with
             ProjectPath = solutionFile
-            Configuration = "AppStore|iPhone"
+            Configuration = "AppStore"
+            Platform = "iPhone"
             Target = "Build"
+            BuildIpa = true
         })
 
     let outputFolder = Path.Combine(projectNameIOS, "bin", "iPhone", "AppStore")
